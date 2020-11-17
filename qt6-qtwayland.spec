@@ -28,6 +28,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(OpenGL)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(xcomposite)
+BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(vulkan)
 BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-egl)
@@ -48,13 +49,7 @@ Qt %{major} Wayland library
 	-DBUILD_SHARED_LIBS:BOOL=ON \
 	-DFEATURE_cxx2a:BOOL=ON \
 	-DFEATURE_dynamicgl:BOOL=ON \
-	-DFEATURE_ftp:BOOL=ON \
-	-DFEATURE_opengl_dynamic:BOOL=ON \
 	-DFEATURE_use_lld_linker:BOOL=ON \
-	-DFEATURE_xcb_native_painting:BOOL=ON \
-	-DFEATURE_openssl:BOOL=ON \
-	-DFEATURE_openssl_linked:BOOL=ON \
-	-DFEATURE_system_sqlite:BOOL=ON \
 	-DINPUT_sqlite=system \
 	-DQT_WILL_INSTALL:BOOL=ON \
 	-D_OPENGL_LIB_PATH=%{_libdir} \
