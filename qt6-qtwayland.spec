@@ -1,4 +1,4 @@
-%define beta beta5
+%define beta rc2
 #define snapshot 20200627
 %define major 6
 
@@ -107,24 +107,6 @@ done
 %{_qtdir}/mkspecs/modules/qt_lib_waylandclient_private.pri
 %{_qtdir}/mkspecs/modules/qt_lib_waylandcompositor.pri
 %{_qtdir}/mkspecs/modules/qt_lib_waylandcompositor_private.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qt-plugin-wayland-egl.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qt-wayland-compositor-vulkan-server.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qt-wayland-compositor-wayland-egl.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qt-wayland-compositor-wayland-eglstream-controller.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qt-wayland-compositor-xcomposite-egl.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qt-wayland-compositor-xcomposite-glx.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwayland-egl.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwayland-generic.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwayland-xcomposite-egl.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwayland-xcomposite-glx.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwaylandcompositoriviapplicationplugin.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwaylandcompositorplugin.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwaylandcompositorwlshellplugin.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwaylandcompositorxdgshellplugin.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwaylandtexturesharing.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_qwaylandtexturesharingextension.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_xcomposite-egl.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_xcomposite-glx.pri
 %{_qtdir}/modules/WaylandClient.json
 %{_qtdir}/modules/WaylandCompositor.json
 %dir %{_qtdir}/plugins/platforms
@@ -134,31 +116,23 @@ done
 %{_qtdir}/plugins/platforms/libqwayland-xcomposite-glx.so
 %dir %{_qtdir}/plugins/wayland-decoration-client
 %{_qtdir}/plugins/wayland-decoration-client/libbradient.so
-%{_qtdir}/mkspecs/modules/qt_plugin_bradient.pri
 %dir %{_qtdir}/plugins/wayland-graphics-integration-client
 %{_qtdir}/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so
 %{_qtdir}/plugins/wayland-graphics-integration-client/libshm-emulation-server.so
-%{_qtdir}/mkspecs/modules/qt_plugin_qt-wayland-compositor-shm-emulation-server.pri
-%{_qtdir}/mkspecs/modules/qt_plugin_shm-emulation-server.pri
 %{_qtdir}/plugins/wayland-graphics-integration-client/libvulkan-server.so
 %{_qtdir}/plugins/wayland-graphics-integration-client/libxcomposite-egl.so
 %{_qtdir}/plugins/wayland-graphics-integration-client/libxcomposite-glx.so
 %dir %{_qtdir}/plugins/wayland-graphics-integration-server
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-shm-emulation-server.so
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-vulkan-server.so
-%{_qtdir}/mkspecs/modules/qt_plugin_vulkan-server.pri
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-egl.so
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-eglstream-controller.so
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-xcomposite-egl.so
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-xcomposite-glx.so
 %dir %{_qtdir}/plugins/wayland-shell-integration
 %{_qtdir}/plugins/wayland-shell-integration/libfullscreen-shell-v1.so
-%{_qtdir}/mkspecs/modules/qt_plugin_fullscreen-shell-v1.pri
 %{_qtdir}/plugins/wayland-shell-integration/libivi-shell.so
-%{_qtdir}/mkspecs/modules/qt_plugin_ivi-shell.pri
 %{_qtdir}/plugins/wayland-shell-integration/libwl-shell.so
-%{_qtdir}/mkspecs/modules/qt_plugin_wl-shell.pri
 %{_qtdir}/plugins/wayland-shell-integration/libxdg-shell.so
-%{_qtdir}/mkspecs/modules/qt_plugin_xdg-shell.pri
 %{_qtdir}/qml/QtWayland/Client
 %{_qtdir}/qml/QtWayland/Compositor
