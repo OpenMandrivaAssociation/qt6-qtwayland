@@ -18,6 +18,7 @@ Summary:	Qt %{major} Wayland support library
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	%{_lib}Qt6Core-devel
+BuildRequires:	%{_lib}Qt6DBus-devel
 BuildRequires:	%{_lib}Qt6Gui-devel
 BuildRequires:	%{_lib}Qt6Widgets-devel
 BuildRequires:	%{_lib}Qt6Xml-devel
