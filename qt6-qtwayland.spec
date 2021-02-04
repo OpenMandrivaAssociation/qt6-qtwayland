@@ -27,6 +27,7 @@ BuildRequires:	%{_lib}Qt6OpenGL-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6QmlQuick-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6QmlModels-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Qml-devel >= %{version}-0
+BuildRequires:	qt6-qtdeclarative >= %{version}-0
 BuildRequires:	qt6-qtshadertools >= %{version}-0
 BuildRequires:	qt%{major}-cmake
 BuildRequires:	pkgconfig(zlib)
