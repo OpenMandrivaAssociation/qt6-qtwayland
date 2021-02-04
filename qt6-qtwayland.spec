@@ -18,12 +18,15 @@ Summary:	Qt %{major} Wayland support library
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	%{_lib}Qt6Core-devel >= %{version}-0
-BuildRequires:	%{_lib}Qt6DBus-devel
-BuildRequires:	%{_lib}Qt6Gui-devel
-BuildRequires:	%{_lib}Qt6Widgets-devel
-BuildRequires:	%{_lib}Qt6Xml-devel
+BuildRequires:	%{_lib}Qt6DBus-devel >= %{version}-0
+BuildRequires:	%{_lib}Qt6Gui-devel >= %{version}-0
+BuildRequires:	%{_lib}Qt6Widgets-devel >= %{version}-0
+BuildRequires:	%{_lib}Qt6Xml-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Qml-devel >= %{version}-0
-BuildRequires:	%{_lib}Qt6OpenGL-devel
+BuildRequires:	%{_lib}Qt6OpenGL-devel >= %{version}-0
+BuildRequires:	%{_lib}Qt6QmlQuick-devel >= %{version}-0
+BuildRequires:	%{_lib}Qt6QmlModels-devel >= %{version}-0
+BuildRequires:	%{_lib}Qt6Qml-devel >= %{version}-0
 BuildRequires:	qt6-qtshadertools >= %{version}-0
 BuildRequires:	qt%{major}-cmake
 BuildRequires:	pkgconfig(zlib)
