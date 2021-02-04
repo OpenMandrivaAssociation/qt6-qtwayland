@@ -24,6 +24,7 @@ BuildRequires:	%{_lib}Qt6Widgets-devel
 BuildRequires:	%{_lib}Qt6Xml-devel
 BuildRequires:	%{_lib}Qt6Qml-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6OpenGL-devel
+BuildRequires:	qt6-qtshadertools >= %{version}-0
 BuildRequires:	qt%{major}-cmake
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(OpenGL)
