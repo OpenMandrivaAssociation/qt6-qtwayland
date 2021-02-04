@@ -20,6 +20,7 @@ BuildRequires:	ninja
 BuildRequires:	%{_lib}Qt6Core-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6DBus-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Gui-devel >= %{version}-0
+BuildRequires:	%{_lib}Qt6Network-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Widgets-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Xml-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Qml-devel >= %{version}-0
