@@ -6,7 +6,7 @@
 
 Name:		qt6-qtwayland
 Version:	6.1.0
-Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
+Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}2
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
 Source:		qtwayland-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
@@ -78,17 +78,15 @@ mkdir -p %{buildroot}%{_bindir} %{buildroot}%{_libdir}/cmake
 for i in %{buildroot}%{_qtdir}/lib/*.so*; do
 	ln -s qt%{major}/lib/$(basename ${i}) %{buildroot}%{_libdir}/
 done
-for i in %{buildroot}%{_qtdir}/lib/cmake/*; do
-	d="$(basename ${i})"
-	# BuildInternals, Gui and Qml are owned by qtbase
-	[ "$d" = "Qt6BuildInternals" -o "$d" = "Qt6Gui" -o "$d" = "Qt6Qml" ] && continue
-	ln -s ../qt%{major}/lib/cmake/$d %{buildroot}%{_libdir}/cmake/
-done
+mv %{buildroot}%{_qtdir}/lib/cmake %{buildroot}%{_libdir}/
 
 %files
 %{_libdir}/cmake/Qt6WaylandClient
 %{_libdir}/cmake/Qt6WaylandCompositor
 %{_libdir}/cmake/Qt6WaylandScannerTools
+%{_libdir}/cmake/Qt6BuildInternals/StandaloneTests/*.cmake
+%{_libdir}/cmake/Qt6Gui/*.cmake
+%{_libdir}/cmake/Qt6Qml/QmlPlugins/*.cmake
 %{_libdir}/libQt6WaylandClient.so
 %{_libdir}/libQt6WaylandClient.so.*
 %{_libdir}/libQt6WaylandCompositor.so
@@ -97,12 +95,6 @@ done
 %{_qtdir}/examples/wayland
 %{_qtdir}/include/QtWaylandClient
 %{_qtdir}/include/QtWaylandCompositor
-%{_qtdir}/lib/cmake/Qt6BuildInternals/StandaloneTests/QtWaylandTestsConfig.cmake
-%{_qtdir}/lib/cmake/Qt6Gui/*.cmake
-%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/*.cmake
-%{_qtdir}/lib/cmake/Qt6WaylandClient
-%{_qtdir}/lib/cmake/Qt6WaylandCompositor
-%{_qtdir}/lib/cmake/Qt6WaylandScannerTools
 %{_qtdir}/lib/libQt6WaylandClient.prl
 %{_qtdir}/lib/libQt6WaylandClient.so
 %{_qtdir}/lib/libQt6WaylandClient.so.*
