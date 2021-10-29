@@ -5,8 +5,8 @@
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.1.0
-Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}2
+Version:	6.2.1
+Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
 Source:		qtwayland-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
@@ -23,11 +23,8 @@ BuildRequires:	%{_lib}Qt6Gui-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Network-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Widgets-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Xml-devel >= %{version}-0
-BuildRequires:	%{_lib}Qt6Qml-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6OpenGL-devel >= %{version}-0
-BuildRequires:	%{_lib}Qt6QmlQuick-devel >= %{version}-0
-BuildRequires:	%{_lib}Qt6QmlModels-devel >= %{version}-0
-BuildRequires:	%{_lib}Qt6Qml-devel >= %{version}-0
+BuildRequires:	qt6-qtdeclarative-devel >= %{version}-0
 BuildRequires:	qt6-qtdeclarative >= %{version}-0
 BuildRequires:	qt6-qtshadertools >= %{version}-0
 BuildRequires:	qt%{major}-cmake
@@ -91,7 +88,6 @@ mv %{buildroot}%{_qtdir}/lib/cmake %{buildroot}%{_libdir}/
 %{_libdir}/libQt6WaylandClient.so.*
 %{_libdir}/libQt6WaylandCompositor.so
 %{_libdir}/libQt6WaylandCompositor.so.*
-%{_qtdir}/bin/qtwaylandscanner
 %{_qtdir}/examples/wayland
 %{_qtdir}/include/QtWaylandClient
 %{_qtdir}/include/QtWaylandCompositor
@@ -131,7 +127,41 @@ mv %{buildroot}%{_qtdir}/lib/cmake %{buildroot}%{_libdir}/
 %dir %{_qtdir}/plugins/wayland-shell-integration
 %{_qtdir}/plugins/wayland-shell-integration/libfullscreen-shell-v1.so
 %{_qtdir}/plugins/wayland-shell-integration/libivi-shell.so
-%{_qtdir}/plugins/wayland-shell-integration/libwl-shell.so
 %{_qtdir}/plugins/wayland-shell-integration/libxdg-shell.so
+%{_qtdir}/plugins/wayland-shell-integration/libwl-shell-plugin.so
 %{_qtdir}/qml/QtWayland/Client
 %{_qtdir}/qml/QtWayland/Compositor
+%{_libdir}/cmake/Qt6/FindWaylandkms.cmake
+%{_libdir}/cmake/Qt6/FindXComposite.cmake
+%{_libdir}/cmake/Qt6WaylandEglClientHwIntegrationPrivate
+%{_libdir}/cmake/Qt6WaylandEglCompositorHwIntegrationPrivate
+%{_libdir}/cmake/Qt6WlShellIntegrationPrivate
+%{_libdir}/libQt6WaylandEglClientHwIntegration.so
+%{_libdir}/libQt6WaylandEglClientHwIntegration.so.%{major}*
+%{_libdir}/libQt6WaylandEglCompositorHwIntegration.so
+%{_libdir}/libQt6WaylandEglCompositorHwIntegration.so.%{major}*
+%{_libdir}/libQt6WlShellIntegration.so
+%{_libdir}/libQt6WlShellIntegration.so.%{major}*
+%{_qtdir}/include/QtWaylandEglClientHwIntegration
+%{_qtdir}/include/QtWaylandEglCompositorHwIntegration
+%{_qtdir}/include/QtWlShellIntegration
+%{_qtdir}/lib/libQt6WaylandEglClientHwIntegration.prl
+%{_qtdir}/lib/libQt6WaylandEglClientHwIntegration.so
+%{_qtdir}/lib/libQt6WaylandEglClientHwIntegration.so.%{major}*
+%{_qtdir}/lib/libQt6WaylandEglCompositorHwIntegration.prl
+%{_qtdir}/lib/libQt6WaylandEglCompositorHwIntegration.so
+%{_qtdir}/lib/libQt6WaylandEglCompositorHwIntegration.so.%{major}*
+%{_qtdir}/lib/libQt6WlShellIntegration.prl
+%{_qtdir}/lib/libQt6WlShellIntegration.so
+%{_qtdir}/lib/libQt6WlShellIntegration.so.%{major}*
+%{_qtdir}/lib/metatypes/qt6waylandclient_relwithdebinfo_metatypes.json
+%{_qtdir}/lib/metatypes/qt6waylandeglclienthwintegrationprivate_relwithdebinfo_metatypes.json
+%{_qtdir}/lib/metatypes/qt6waylandeglcompositorhwintegrationprivate_relwithdebinfo_metatypes.json
+%{_qtdir}/lib/metatypes/qt6wlshellintegrationprivate_relwithdebinfo_metatypes.json
+%{_qtdir}/libexec/qtwaylandscanner
+%{_qtdir}/mkspecs/modules/qt_lib_wayland_egl_client_hw_integration_private.pri
+%{_qtdir}/mkspecs/modules/qt_lib_wayland_egl_compositor_hw_integration_private.pri
+%{_qtdir}/mkspecs/modules/qt_lib_wl_shell_integration_private.pri
+%{_qtdir}/modules/WaylandEglClientHwIntegrationPrivate.json
+%{_qtdir}/modules/WaylandEglCompositorHwIntegrationPrivate.json
+%{_qtdir}/modules/WlShellIntegrationPrivate.json
