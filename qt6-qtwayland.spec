@@ -5,7 +5,7 @@
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.2.2
+Version:	6.2.3
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
@@ -31,13 +31,12 @@ BuildRequires:	qt%{major}-cmake
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(OpenGL)
 BuildRequires:	pkgconfig(gl)
-BuildRequires:	pkgconfig(xcomposite)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(vulkan)
 BuildRequires:	pkgconfig(wayland-client)
 BuildRequires:	pkgconfig(wayland-egl)
 BuildRequires:	pkgconfig(wayland-scanner)
-#BuildRequires:	pkgconfig(wayland-kms)
+BuildRequires:	pkgconfig(wayland-kms)
 License:	LGPLv3/GPLv3/GPLv2
 
 %description
@@ -107,23 +106,17 @@ mv %{buildroot}%{_qtdir}/lib/cmake %{buildroot}%{_libdir}/
 %dir %{_qtdir}/plugins/platforms
 %{_qtdir}/plugins/platforms/libqwayland-egl.so
 %{_qtdir}/plugins/platforms/libqwayland-generic.so
-%{_qtdir}/plugins/platforms/libqwayland-xcomposite-egl.so
-%{_qtdir}/plugins/platforms/libqwayland-xcomposite-glx.so
 %dir %{_qtdir}/plugins/wayland-decoration-client
 %{_qtdir}/plugins/wayland-decoration-client/libbradient.so
 %dir %{_qtdir}/plugins/wayland-graphics-integration-client
 %{_qtdir}/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so
 %{_qtdir}/plugins/wayland-graphics-integration-client/libshm-emulation-server.so
 %{_qtdir}/plugins/wayland-graphics-integration-client/libvulkan-server.so
-%{_qtdir}/plugins/wayland-graphics-integration-client/libxcomposite-egl.so
-%{_qtdir}/plugins/wayland-graphics-integration-client/libxcomposite-glx.so
 %dir %{_qtdir}/plugins/wayland-graphics-integration-server
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-shm-emulation-server.so
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-vulkan-server.so
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-egl.so
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-eglstream-controller.so
-%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-xcomposite-egl.so
-%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-xcomposite-glx.so
 %dir %{_qtdir}/plugins/wayland-shell-integration
 %{_qtdir}/plugins/wayland-shell-integration/libfullscreen-shell-v1.so
 %{_qtdir}/plugins/wayland-shell-integration/libivi-shell.so
