@@ -59,7 +59,8 @@ Qt %{major} Wayland library
 	-DOPENGL_egl_LIBRARY=%{_libdir}/libEGL.so \
 	-DOPENGL_glu_LIBRARY=%{_libdir}/libGLU.so \
 	-DOPENGL_glx_LIBRARY=%{_libdir}/libGLX.so \
-	-DOPENGL_opengl_LIBRARY=%{_libdir}/libOpenGL.so
+	-DOPENGL_opengl_LIBRARY=%{_libdir}/libOpenGL.so \
+	-DQT_MKSPECS_DIR:FILEPATH=%{_qtdir}/mkspecs
 
 %build
 export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
