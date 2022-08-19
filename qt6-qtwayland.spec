@@ -37,6 +37,9 @@ BuildRequires:	pkgconfig(wayland-scanner)
 BuildRequires:	pkgconfig(wayland-kms)
 License:	LGPLv3/GPLv3/GPLv2
 
+%description
+Qt %{major} Wayland library
+
 %global extra_files_WaylandClient \
 %{_qtdir}/qml/QtWayland/Client/TextureSharing/libwaylandtexturesharingplugin.so \
 %{_qtdir}/qml/QtWayland/Client/TextureSharing/qmldir \
@@ -120,9 +123,6 @@ License:	LGPLv3/GPLv3/GPLv2
 %qt6lib WlShellIntegration
 %qt6lib WaylandEglClientHwIntegration
 %qt6lib WaylandEglCompositorHwIntegration
-
-%description
-Qt %{major} Wayland library
 
 %prep
 %autosetup -p1 -n qtwayland%{!?snapshot:-everywhere-src-%{version}%{?beta:-%{beta}}}
