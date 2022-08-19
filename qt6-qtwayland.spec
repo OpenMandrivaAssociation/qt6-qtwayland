@@ -1,11 +1,11 @@
-#define beta rc
+%define beta beta3
 #define snapshot 20200627
 %define major 6
 
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.3.0
+Version:	6.4.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
@@ -24,9 +24,7 @@ BuildRequires:	%{_lib}Qt6Network-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Widgets-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Xml-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6OpenGL-devel >= %{version}-0
-BuildRequires:	qt6-qtdeclarative-devel >= %{version}-0
-BuildRequires:	qt6-qtdeclarative >= %{version}-0
-BuildRequires:	qt6-qtshadertools >= %{version}-0
+BuildRequires:	cmake(Qt%{qtmajor}ShaderTools)
 BuildRequires:	qt%{major}-cmake
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(OpenGL)
@@ -38,6 +36,90 @@ BuildRequires:	pkgconfig(wayland-egl)
 BuildRequires:	pkgconfig(wayland-scanner)
 BuildRequires:	pkgconfig(wayland-kms)
 License:	LGPLv3/GPLv3/GPLv2
+
+%global extra_files_WaylandClient \
+%{_qtdir}/qml/QtWayland/Client/TextureSharing/libwaylandtexturesharingplugin.so \
+%{_qtdir}/qml/QtWayland/Client/TextureSharing/qmldir \
+%dir %{_qtdir}/plugins/wayland-graphics-integration-client \
+# FIXME is it worth splitting some of those plugins into their own package? \
+%{_qtdir}/plugins/wayland-graphics-integration-client/libdmabuf-server.so \
+%{_qtdir}/plugins/wayland-graphics-integration-client/libdrm-egl-server.so \
+%{_qtdir}/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so \
+%{_qtdir}/plugins/wayland-graphics-integration-client/libshm-emulation-server.so \
+%{_qtdir}/plugins/wayland-graphics-integration-client/libvulkan-server.so \
+%{_qtdir}/plugins/platforms/libqwayland-egl.so \
+%{_qtdir}/plugins/platforms/libqwayland-generic.so \
+%dir %{_qtdir}/plugins/wayland-decoration-client \
+%{_qtdir}/plugins/wayland-decoration-client/libbradient.so
+
+%global extra_devel_files_WaylandClient \
+%{_qtdir}/include/QtWaylandGlobal \
+%{_qtdir}/lib/cmake/Qt6/FindWaylandkms.cmake \
+%{_qtdir}/lib/cmake/Qt6BuildInternals/StandaloneTests/QtWaylandTestsConfig.cmake \
+%{_qtdir}/lib/cmake/Qt6WaylandGlobalPrivate/Qt6WaylandGlobalPrivate*.cmake \
+%{_qtdir}/mkspecs/modules/qt_lib_waylandglobal_private.pri \
+%{_qtdir}/libexec/qtwaylandscanner \
+%{_qtdir}/modules/WaylandGlobalPrivate.json \
+%{_qtdir}/lib/cmake/Qt6WaylandScannerTools
+
+%global extra_devel_files_WaylandEglClientHwIntegration \
+%{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPlugin*.cmake \
+%{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandEglPlatformIntegrationPlugin*.cmake \
+%{_qtdir}/mkspecs/modules/qt_lib_wayland_egl_client_hw_integration_private.pri
+
+%global extra_devel_files_WaylandEglCompositorHwIntegration \
+%{_qtdir}/mkspecs/modules/qt_lib_wayland_egl_compositor_hw_integration_private.pri
+
+%global extra_files_WaylandCompositor \
+%dir %{_qtdir}/qml/QtWayland/Compositor \
+%{_qtdir}/qml/QtWayland/Compositor/qmlfiles \
+%{_qtdir}/qml/QtWayland/Compositor/IviApplication \
+%{_qtdir}/qml/QtWayland/Compositor/PresentationTime \
+%{_qtdir}/qml/QtWayland/Compositor/QtShell \
+%{_qtdir}/qml/QtWayland/Compositor/TextureSharingExtension \
+%{_qtdir}/qml/QtWayland/Compositor/WlShell \
+%{_qtdir}/qml/QtWayland/Compositor/XdgShell \
+%{_qtdir}/qml/QtWayland/Compositor/*.qmltypes \
+%{_qtdir}/qml/QtWayland/Compositor/*.so \
+%{_qtdir}/qml/QtWayland/Compositor/qmldir \
+%dir %{_qtdir}/plugins/wayland-graphics-integration-server \
+# FIXME is it worth splitting some of those plugins into their own package? \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-dmabuf-server-buffer.so \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-drm-egl-server-buffer.so \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-linux-dmabuf-unstable-v1.so \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-shm-emulation-server.so \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-vulkan-server.so \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-egl.so \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-eglstream-controller.so
+
+%global extra_devel_files_WaylandCompositor \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorIviapplication*.cmake \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorPresentationTime*.cmake \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorQtShell*.cmake \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorWLShell*.cmake \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorXdgShell*.cmake \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandTextureSharing*.cmake \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6qwaylandcompositorplugin*.cmake
+
+%global extra_files_WlShellIntegration \
+# FIXME is it worth packaging some of those shells separately? \
+# A desktop system is unlikely to use IVI... \
+# But OTOH those plugins are small. \
+%dir %{_qtdir}/plugins/wayland-shell-integration \
+%{_qtdir}/plugins/wayland-shell-integration/libfullscreen-shell-v1.so \
+%{_qtdir}/plugins/wayland-shell-integration/libivi-shell.so \
+%{_qtdir}/plugins/wayland-shell-integration/libqt-shell.so \
+%{_qtdir}/plugins/wayland-shell-integration/libwl-shell-plugin.so \
+%{_qtdir}/plugins/wayland-shell-integration/libxdg-shell.so
+
+%global extra_devel_files_WlShellIntegration \
+%{_qtdir}/mkspecs/modules/qt_lib_wl_shell_integration_private.pri
+
+%qt6lib WaylandClient
+%qt6lib WaylandCompositor
+%qt6lib WlShellIntegration
+%qt6lib WaylandEglClientHwIntegration
+%qt6lib WaylandEglCompositorHwIntegration
 
 %description
 Qt %{major} Wayland library
@@ -68,94 +150,6 @@ export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
 
 %install
 %ninja_install -C build
-# Put stuff where tools will find it
-# We can't do the same for %{_includedir} right now because that would
-# clash with qt5 (both would want to have /usr/include/QtCore and friends)
-mkdir -p %{buildroot}%{_bindir} %{buildroot}%{_libdir}/cmake
-for i in %{buildroot}%{_qtdir}/lib/*.so*; do
-	ln -s qt%{major}/lib/$(basename ${i}) %{buildroot}%{_libdir}/
-done
-mv %{buildroot}%{_qtdir}/lib/cmake %{buildroot}%{_libdir}/
 
 %files
-%{_libdir}/cmake/Qt6WaylandClient
-%{_libdir}/cmake/Qt6WaylandCompositor
-%{_libdir}/cmake/Qt6WaylandScannerTools
-%{_libdir}/cmake/Qt6BuildInternals/StandaloneTests/*.cmake
-%{_libdir}/cmake/Qt6Gui/*.cmake
-%{_libdir}/cmake/Qt6Qml/QmlPlugins/*.cmake
-%{_libdir}/libQt6WaylandClient.so
-%{_libdir}/libQt6WaylandClient.so.*
-%{_libdir}/libQt6WaylandCompositor.so
-%{_libdir}/libQt6WaylandCompositor.so.*
 %{_qtdir}/examples/wayland
-%{_qtdir}/include/QtWaylandClient
-%{_qtdir}/include/QtWaylandCompositor
-%{_qtdir}/lib/libQt6WaylandClient.prl
-%{_qtdir}/lib/libQt6WaylandClient.so
-%{_qtdir}/lib/libQt6WaylandClient.so.*
-%{_qtdir}/lib/libQt6WaylandCompositor.prl
-%{_qtdir}/lib/libQt6WaylandCompositor.so
-%{_qtdir}/lib/libQt6WaylandCompositor.so.*
-%{_qtdir}/lib/metatypes/qt6waylandcompositor_relwithdebinfo_metatypes.json
-%{_qtdir}/mkspecs/modules/qt_lib_waylandclient.pri
-%{_qtdir}/mkspecs/modules/qt_lib_waylandclient_private.pri
-%{_qtdir}/mkspecs/modules/qt_lib_waylandcompositor.pri
-%{_qtdir}/mkspecs/modules/qt_lib_waylandcompositor_private.pri
-%{_qtdir}/modules/WaylandClient.json
-%{_qtdir}/modules/WaylandCompositor.json
-%dir %{_qtdir}/plugins/platforms
-%{_qtdir}/plugins/platforms/libqwayland-egl.so
-%{_qtdir}/plugins/platforms/libqwayland-generic.so
-%dir %{_qtdir}/plugins/wayland-decoration-client
-%{_qtdir}/plugins/wayland-decoration-client/libbradient.so
-%dir %{_qtdir}/plugins/wayland-graphics-integration-client
-%{_qtdir}/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so
-%{_qtdir}/plugins/wayland-graphics-integration-client/libshm-emulation-server.so
-%{_qtdir}/plugins/wayland-graphics-integration-client/libvulkan-server.so
-%dir %{_qtdir}/plugins/wayland-graphics-integration-server
-%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-shm-emulation-server.so
-%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-vulkan-server.so
-%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-egl.so
-%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-eglstream-controller.so
-%dir %{_qtdir}/plugins/wayland-shell-integration
-%{_qtdir}/plugins/wayland-shell-integration/libfullscreen-shell-v1.so
-%{_qtdir}/plugins/wayland-shell-integration/libivi-shell.so
-%{_qtdir}/plugins/wayland-shell-integration/libxdg-shell.so
-%{_qtdir}/plugins/wayland-shell-integration/libwl-shell-plugin.so
-%{_qtdir}/qml/QtWayland/Client
-%{_qtdir}/qml/QtWayland/Compositor
-%{_libdir}/cmake/Qt6/FindWaylandkms.cmake
-%{_libdir}/cmake/Qt6/FindXComposite.cmake
-%{_libdir}/cmake/Qt6WaylandEglClientHwIntegrationPrivate
-%{_libdir}/cmake/Qt6WaylandEglCompositorHwIntegrationPrivate
-%{_libdir}/cmake/Qt6WlShellIntegrationPrivate
-%{_libdir}/libQt6WaylandEglClientHwIntegration.so
-%{_libdir}/libQt6WaylandEglClientHwIntegration.so.%{major}*
-%{_libdir}/libQt6WaylandEglCompositorHwIntegration.so
-%{_libdir}/libQt6WaylandEglCompositorHwIntegration.so.%{major}*
-%{_libdir}/libQt6WlShellIntegration.so
-%{_libdir}/libQt6WlShellIntegration.so.%{major}*
-%{_qtdir}/include/QtWaylandEglClientHwIntegration
-%{_qtdir}/include/QtWaylandEglCompositorHwIntegration
-%{_qtdir}/include/QtWlShellIntegration
-%{_qtdir}/lib/libQt6WaylandEglClientHwIntegration.prl
-%{_qtdir}/lib/libQt6WaylandEglClientHwIntegration.so
-%{_qtdir}/lib/libQt6WaylandEglClientHwIntegration.so.%{major}*
-%{_qtdir}/lib/libQt6WaylandEglCompositorHwIntegration.prl
-%{_qtdir}/lib/libQt6WaylandEglCompositorHwIntegration.so
-%{_qtdir}/lib/libQt6WaylandEglCompositorHwIntegration.so.%{major}*
-%{_qtdir}/lib/libQt6WlShellIntegration.prl
-%{_qtdir}/lib/libQt6WlShellIntegration.so
-%{_qtdir}/lib/libQt6WlShellIntegration.so.%{major}*
-%{_qtdir}/lib/metatypes/qt6waylandclient_relwithdebinfo_metatypes.json
-%{_qtdir}/lib/metatypes/qt6waylandeglclienthwintegrationprivate_relwithdebinfo_metatypes.json
-%{_qtdir}/lib/metatypes/qt6waylandeglcompositorhwintegrationprivate_relwithdebinfo_metatypes.json
-%{_qtdir}/lib/metatypes/qt6wlshellintegrationprivate_relwithdebinfo_metatypes.json
-%{_qtdir}/libexec/qtwaylandscanner
-%{_qtdir}/mkspecs/modules/qt_lib_wayland_egl_client_hw_integration_private.pri
-%{_qtdir}/mkspecs/modules/qt_lib_wayland_egl_compositor_hw_integration_private.pri
-%{_qtdir}/mkspecs/modules/qt_lib_wl_shell_integration_private.pri
-%{_qtdir}/modules/WaylandEglClientHwIntegrationPrivate.json
-%{_qtdir}/modules/WaylandEglCompositorHwIntegrationPrivate.json
-%{_qtdir}/modules/WlShellIntegrationPrivate.json
