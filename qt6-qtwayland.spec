@@ -15,7 +15,7 @@ Source:		http://download.qt-project.org/%{?beta:development}%{!?beta:official}_r
 %endif
 Group:		System/Libraries
 Summary:	Qt %{major} Wayland support library
-BuildRequires:	cmake
+BuildRequires:	qt6-cmake
 BuildRequires:	ninja
 BuildRequires:	%{_lib}Qt6Core-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6DBus-devel >= %{version}-0
