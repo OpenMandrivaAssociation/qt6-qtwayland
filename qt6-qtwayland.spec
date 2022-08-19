@@ -28,6 +28,8 @@ BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	qt%{major}-cmake
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(OpenGL)
+BuildRequires:	pkgconfig(egl)
+BuildRequires:	pkgconfig(libdrm)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(vulkan)
