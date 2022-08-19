@@ -24,7 +24,7 @@ BuildRequires:	%{_lib}Qt6Network-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Widgets-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6Xml-devel >= %{version}-0
 BuildRequires:	%{_lib}Qt6OpenGL-devel >= %{version}-0
-BuildRequires:	cmake(Qt%{qtmajor}ShaderTools)
+BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	qt%{major}-cmake
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(OpenGL)
