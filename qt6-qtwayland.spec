@@ -6,7 +6,7 @@
 
 Name:		qt6-qtwayland
 Version:	6.5.0
-Release:	%{?beta:0.%{beta}.1}%{?snapshot:1.%{snapshot}.}1
+Release:	%{?beta:0.%{beta}.1}%{?snapshot:0.%{snapshot}.}2
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
 Source:		qtwayland-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
@@ -155,6 +155,7 @@ export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
 
 %install
 %ninja_install -C build
+%qt6_postinstall
 
 %files
 %{_qtdir}/examples/wayland
