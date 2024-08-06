@@ -6,7 +6,7 @@
 
 Name:		qt6-qtwayland
 Version:	6.7.2
-Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
+Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}2
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
 Source:		qtwayland-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
@@ -41,6 +41,11 @@ BuildRequires:	pkgconfig(wayland-egl)
 BuildRequires:	pkgconfig(wayland-scanner)
 BuildRequires:	pkgconfig(wayland-kms)
 License:	LGPLv3/GPLv3/GPLv2
+
+%patchlist
+https://invent.kde.org/qt/qt/qtwayland/-/commit/92bcb8f6b7a852c7a5d662fc34de561692a7a454.patch
+https://invent.kde.org/qt/qt/qtwayland/-/commit/406995207eae8d644b6e5262aa716a48c7e471a8.patch
+https://invent.kde.org/qt/qt/qtwayland/-/commit/632127d7f1d86cba4dd17361f24f9fd70a0ae44c.patch
 
 %description
 Qt %{major} Wayland library
