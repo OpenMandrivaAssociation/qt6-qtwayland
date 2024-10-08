@@ -5,7 +5,7 @@
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.7.3
+Version:	6.8.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
@@ -58,6 +58,7 @@ Qt %{major} Wayland library
 %{_qtdir}/plugins/platforms/libqwayland-egl.so \
 %{_qtdir}/plugins/platforms/libqwayland-generic.so \
 %dir %{_qtdir}/plugins/wayland-decoration-client \
+%{_qtdir}/plugins/wayland-decoration-client/libadwaita.so \
 %{_qtdir}/plugins/wayland-decoration-client/libbradient.so
 
 %global extra_devel_files_WaylandClient \
@@ -128,6 +129,10 @@ Qt %{major} Wayland library
 %qt6lib WlShellIntegration
 %qt6lib WaylandEglClientHwIntegration
 %qt6lib WaylandEglCompositorHwIntegration
+%qt6lib WaylandCompositorIviapplication
+%qt6lib WaylandCompositorPresentationTime
+%qt6lib WaylandCompositorWLShell
+%qt6lib WaylandCompositorXdgShell
 
 %prep
 %autosetup -p1 -n qtwayland%{!?snapshot:-everywhere-src-%{version}%{?beta:-%{beta}}}
