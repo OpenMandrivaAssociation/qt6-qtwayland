@@ -13,6 +13,8 @@ Source:		qtwayland-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
 %else
 Source:		http://download.qt-project.org/%{?beta:development}%{!?beta:official}_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}%{?beta:-%{beta}}/submodules/qtwayland-everywhere-src-%{version}%{?beta:-%{beta}}.tar.xz
 %endif
+# Recommended by KDE
+Patch0:		https://code.qt.io/cgit/qt/qtwayland.git/patch/?id=c2f61bc47baacf2e6a44c6c3c4e4cbf0abfa4095#/c2f61bc4.patch
 Group:		System/Libraries
 Summary:	Qt %{major} Wayland support library
 BuildRequires:	qt6-cmake
