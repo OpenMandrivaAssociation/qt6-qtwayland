@@ -5,7 +5,7 @@
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.8.0
+Version:	6.8.1
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
@@ -73,7 +73,8 @@ Qt %{major} Wayland library
 %{_qtdir}/mkspecs/modules/qt_lib_waylandglobal_private.pri \
 %{_qtdir}/libexec/qtwaylandscanner \
 %{_qtdir}/modules/WaylandGlobalPrivate.json \
-%{_qtdir}/lib/cmake/Qt6WaylandScannerTools
+%{_qtdir}/lib/cmake/Qt6WaylandScannerTools \
+%{_qtdir}/sbom/*
 
 %global extra_devel_files_WaylandEglClientHwIntegration \
 %{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPlugin*.cmake \
