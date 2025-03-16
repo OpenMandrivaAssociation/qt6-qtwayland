@@ -1,11 +1,11 @@
-#define beta rc2
+%define beta rc
 #define snapshot 20200627
 %define major 6
 
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.8.2
+Version:	6.9.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
@@ -13,8 +13,6 @@ Source:		qtwayland-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
 %else
 Source:		http://download.qt-project.org/%{?beta:development}%{!?beta:official}_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}%{?beta:-%{beta}}/submodules/qtwayland-everywhere-src-%{version}%{?beta:-%{beta}}.tar.xz
 %endif
-# Recommended by KDE
-Patch0:		https://code.qt.io/cgit/qt/qtwayland.git/patch/?id=c2f61bc47baacf2e6a44c6c3c4e4cbf0abfa4095#/c2f61bc4.patch
 Group:		System/Libraries
 Summary:	Qt %{major} Wayland support library
 BuildRequires:	qt6-cmake
@@ -75,6 +73,10 @@ Qt %{major} Wayland library
 %{_qtdir}/modules/WaylandGlobalPrivate.json \
 %{_qtdir}/lib/cmake/Qt6WaylandScannerTools \
 %{_qtdir}/sbom/*
+
+%global extra_devel_reqprov_WaylandClient \
+Requires: pkgconfig(wayland-client) \
+Requires: pkgconfig(wayland-protocols)
 
 %global extra_devel_files_WaylandEglClientHwIntegration \
 %{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPlugin*.cmake \
