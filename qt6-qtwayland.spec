@@ -1,11 +1,11 @@
-#define beta rc
+%define beta beta2
 #define snapshot 20200627
 %define major 6
 
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.9.1
+Version:	6.10.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
@@ -49,42 +49,6 @@ License:	LGPLv3/GPLv3/GPLv2
 %description
 Qt %{major} Wayland library
 
-%global extra_files_WaylandClient \
-%{_qtdir}/qml/QtWayland/Client/TextureSharing/libwaylandtexturesharingplugin.so \
-%{_qtdir}/qml/QtWayland/Client/TextureSharing/qmldir \
-%dir %{_qtdir}/plugins/wayland-graphics-integration-client \
-# FIXME is it worth splitting some of those plugins into their own package? \
-%{_qtdir}/plugins/wayland-graphics-integration-client/libdmabuf-server.so \
-%{_qtdir}/plugins/wayland-graphics-integration-client/libdrm-egl-server.so \
-%{_qtdir}/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so \
-%{_qtdir}/plugins/wayland-graphics-integration-client/libshm-emulation-server.so \
-%{_qtdir}/plugins/wayland-graphics-integration-client/libvulkan-server.so \
-%{_qtdir}/plugins/platforms/libqwayland-egl.so \
-%{_qtdir}/plugins/platforms/libqwayland-generic.so \
-%dir %{_qtdir}/plugins/wayland-decoration-client \
-%{_qtdir}/plugins/wayland-decoration-client/libadwaita.so \
-%{_qtdir}/plugins/wayland-decoration-client/libbradient.so
-
-%global extra_devel_files_WaylandClient \
-%{_qtdir}/include/QtWaylandGlobal \
-%{_qtdir}/lib/cmake/Qt6/FindWaylandkms.cmake \
-%{_qtdir}/lib/cmake/Qt6BuildInternals/StandaloneTests/QtWaylandTestsConfig.cmake \
-%{_qtdir}/lib/cmake/Qt6WaylandGlobalPrivate/Qt6WaylandGlobalPrivate*.cmake \
-%{_qtdir}/mkspecs/modules/qt_lib_waylandglobal_private.pri \
-%{_qtdir}/libexec/qtwaylandscanner \
-%{_qtdir}/modules/WaylandGlobalPrivate.json \
-%{_qtdir}/lib/cmake/Qt6WaylandScannerTools \
-%{_qtdir}/sbom/*
-
-%global extra_devel_reqprov_WaylandClient \
-Requires: pkgconfig(wayland-client) \
-Requires: pkgconfig(wayland-protocols)
-
-%global extra_devel_files_WaylandEglClientHwIntegration \
-%{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPlugin*.cmake \
-%{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandEglPlatformIntegrationPlugin*.cmake \
-%{_qtdir}/mkspecs/modules/qt_lib_wayland_egl_client_hw_integration_private.pri
-
 %global extra_devel_files_WaylandEglCompositorHwIntegration \
 %{_qtdir}/mkspecs/modules/qt_lib_wayland_egl_compositor_hw_integration_private.pri
 
@@ -102,13 +66,20 @@ Requires: pkgconfig(wayland-protocols)
 %{_qtdir}/qml/QtWayland/Compositor/qmldir \
 %dir %{_qtdir}/plugins/wayland-graphics-integration-server \
 # FIXME is it worth splitting some of those plugins into their own package? \
+# adwaita most definitely sucks... \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-dmabuf-server-buffer.so \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-drm-egl-server-buffer.so \
-%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-linux-dmabuf-unstable-v1.so \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-shm-emulation-server.so \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-vulkan-server.so \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-egl.so \
-%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-eglstream-controller.so
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-wayland-eglstream-controller.so \
+%{_qtdir}/plugins/wayland-decoration-client/libadwaita.so \
+%{_qtdir}/plugins/wayland-shell-integration/libivi-shell.so \
+%{_qtdir}/plugins/wayland-shell-integration/libqt-shell.so \
+%dir %{_qtdir}/qml/QtWayland \
+%dir %{_qtdir}/qml/QtWayland/Client \
+%dir %{_qtdir}/qml/QtWayland/Client/TextureSharing \
+%{_qtdir}/qml/QtWayland/Client/TextureSharing/* \
 
 %global extra_devel_files_WaylandCompositor \
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorIviapplication*.cmake \
@@ -117,26 +88,16 @@ Requires: pkgconfig(wayland-protocols)
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorWLShell*.cmake \
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorXdgShell*.cmake \
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandTextureSharing*.cmake \
-%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6qwaylandcompositorplugin*.cmake
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6qwaylandcompositorplugin*.cmake \
+%{_qtdir}/lib/cmake/Qt6/FindWaylandkms.cmake \
+%{_qtdir}/lib/cmake/Qt6BuildInternals/StandaloneTests/QtWaylandTestsConfig.cmake \
+%{_qtdir}/lib/cmake/Qt6WaylandClient \
+%{_qtdir}/lib/cmake/Qt6WaylandClientFeaturesPrivate \
+%{_qtdir}/mkspecs/modules/qt_lib_waylandclientfeatures_private.pri \
+%{_qtdir}/modules/WaylandClientFeaturesPrivate.json \
+%{_qtdir}/sbom/qtwayland-6.10.0.spdx
 
-%global extra_files_WlShellIntegration \
-# FIXME is it worth packaging some of those shells separately? \
-# A desktop system is unlikely to use IVI... \
-# But OTOH those plugins are small. \
-%dir %{_qtdir}/plugins/wayland-shell-integration \
-%{_qtdir}/plugins/wayland-shell-integration/libfullscreen-shell-v1.so \
-%{_qtdir}/plugins/wayland-shell-integration/libivi-shell.so \
-%{_qtdir}/plugins/wayland-shell-integration/libqt-shell.so \
-%{_qtdir}/plugins/wayland-shell-integration/libwl-shell-plugin.so \
-%{_qtdir}/plugins/wayland-shell-integration/libxdg-shell.so
-
-%global extra_devel_files_WlShellIntegration \
-%{_qtdir}/mkspecs/modules/qt_lib_wl_shell_integration_private.pri
-
-%qt6lib WaylandClient
 %qt6lib WaylandCompositor
-%qt6lib WlShellIntegration
-%qt6lib WaylandEglClientHwIntegration
 %qt6lib WaylandEglCompositorHwIntegration
 %qt6lib WaylandCompositorIviapplication
 %qt6lib WaylandCompositorPresentationTime
