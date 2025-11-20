@@ -5,7 +5,7 @@
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.10.0
+Version:	6.10.1
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
@@ -95,7 +95,7 @@ Qt %{major} Wayland library
 %{_qtdir}/lib/cmake/Qt6WaylandClientFeaturesPrivate \
 %{_qtdir}/mkspecs/modules/qt_lib_waylandclientfeatures_private.pri \
 %{_qtdir}/modules/WaylandClientFeaturesPrivate.json \
-%{_qtdir}/sbom/qtwayland-6.10.0.spdx
+%{_qtdir}/sbom/qtwayland-%{version}.spdx
 
 %qt6lib WaylandCompositor
 %qt6lib WaylandEglCompositorHwIntegration
