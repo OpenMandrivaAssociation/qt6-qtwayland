@@ -30,6 +30,7 @@ BuildRequires:	cmake(Qt6SvgWidgets)
 BuildRequires:	cmake(Qt6Xml)
 BuildRequires:	cmake(Qt6OpenGL)
 BuildRequires:	cmake(Qt6ShaderTools)
+BuildRequires:	cmake(Qt6WaylandClientPrivate)
 BuildRequires:	qt%{major}-cmake
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(OpenGL)
