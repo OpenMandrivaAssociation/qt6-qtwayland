@@ -5,7 +5,7 @@
 %define _qtdir %{_libdir}/qt%{major}
 
 Name:		qt6-qtwayland
-Version:	6.10.2
+Version:	6.11.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtwayland.git
@@ -91,9 +91,11 @@ Qt %{major} Wayland library
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandCompositorXdgShell*.cmake \
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6WaylandTextureSharing*.cmake \
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/Qt6qwaylandcompositorplugin*.cmake \
+%{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandAdwaitaDecorationPlugin*.cmake \
+%{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandIviShellIntegrationPlugin*.cmake \
+%{_qtdir}/lib/cmake/Qt6Gui/Qt6QWaylandQtShellIntegrationPlugin*.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindWaylandkms.cmake \
 %{_qtdir}/lib/cmake/Qt6BuildInternals/StandaloneTests/QtWaylandTestsConfig.cmake \
-%{_qtdir}/lib/cmake/Qt6WaylandClient \
 %{_qtdir}/lib/cmake/Qt6WaylandClientFeaturesPrivate \
 %{_qtdir}/mkspecs/modules/qt_lib_waylandclientfeatures_private.pri \
 %{_qtdir}/modules/WaylandClientFeaturesPrivate.json \
