@@ -101,6 +101,12 @@ Qt %{major} Wayland library
 %{_qtdir}/modules/WaylandClientFeaturesPrivate.json \
 %{_qtdir}/sbom/qtwayland-%{version}.spdx
 
+%global extra_devel_reqprov_WaylandCompositor \
+Provides: cmake(Qt6WaylandClientFeaturesPrivatePrivate) = %{EVRD}
+
+%global extra_devel_reqprov_WaylandEglCompositorHwIntegration \
+Provides: cmake(Qt6WaylandEglCompositorHwIntegrationPrivatePrivate) = %{EVRD}
+
 %qt6lib WaylandCompositor
 %qt6lib WaylandEglCompositorHwIntegration
 %qt6lib WaylandCompositorIviapplication
