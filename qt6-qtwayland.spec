@@ -70,6 +70,8 @@ Qt %{major} Wayland library
 # FIXME is it worth splitting some of those plugins into their own package? \
 # adwaita most definitely sucks... \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-dmabuf-server-buffer.so \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-linux-dmabuf-unstable-v1.so \
+%{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-linux-dmabuf-v1.so \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-drm-egl-server-buffer.so \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-shm-emulation-server.so \
 %{_qtdir}/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-vulkan-server.so \
